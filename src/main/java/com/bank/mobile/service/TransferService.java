@@ -1,8 +1,8 @@
 package com.bank.mobile.service;
 
-import com.bank.mobile.client.corebanking.dto.TransferInfoDto;
-import com.bank.mobile.client.corebanking.dto.TransferRequest;
-import com.bank.mobile.client.corebanking.dto.TransferResponse;
+import com.bank.mobile.client.corebanking.dto.CBTransferInfoDto;
+import com.bank.mobile.dto.TransferRequest;
+import com.bank.mobile.dto.TransferResponse;
 
 import java.util.List;
 
@@ -11,5 +11,7 @@ public interface TransferService {
 
     TransferResponse transfer(TransferRequest request, String currentUserNationalCode);
 
-    List<TransferInfoDto> history(String currentUserNationalCode);
+    List<CBTransferInfoDto> history(String currentUserNationalCode);
+
+    void sendTransferOtp(String currentUserNationalCode);
 }

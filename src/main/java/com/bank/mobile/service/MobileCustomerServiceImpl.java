@@ -1,7 +1,7 @@
 package com.bank.mobile.service;
 
 import com.bank.mobile.client.corebanking.CoreBankingService;
-import com.bank.mobile.client.corebanking.dto.CustomerDto;
+import com.bank.mobile.client.corebanking.dto.CBCustomerDto;
 import com.bank.mobile.dto.RegisterMobileBankRequest;
 import com.bank.mobile.entity.MobileCustomer;
 import com.bank.mobile.exception.BusinessException;
@@ -27,7 +27,7 @@ public class MobileCustomerServiceImpl implements MobileCustomerService {
     @Transactional
     public MobileCustomer registerCustomer(RegisterMobileBankRequest request) {
         checkCustomerExistence(request.nationalCode());
-        CustomerDto customerDto = coreBankingService.lookupCustomerByNationalCode(request.nationalCode());
+        CBCustomerDto customerDto = coreBankingService.lookupCustomerByNationalCode(request.nationalCode());
         MobileCustomer mobileCustomer = new MobileCustomer();
         mobileCustomer.setNationalCode(customerDto.nationalCode());
         mobileCustomer.setFirstName(customerDto.firstName());

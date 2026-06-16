@@ -1,9 +1,9 @@
 package com.bank.mobile.client.corebanking;
 
-import com.bank.mobile.client.corebanking.dto.CustomerDto;
-import com.bank.mobile.client.corebanking.dto.TransferInfoDto;
-import com.bank.mobile.client.corebanking.dto.TransferRequest;
-import com.bank.mobile.client.corebanking.dto.TransferResponse;
+import com.bank.mobile.client.corebanking.dto.CBCustomerDto;
+import com.bank.mobile.client.corebanking.dto.CBTransferInfoDto;
+import com.bank.mobile.client.corebanking.dto.CBTransferRequest;
+import com.bank.mobile.client.corebanking.dto.CBTransferResponse;
 import com.bank.mobile.client.corebanking.exception.CoreBankingMessage;
 import com.bank.mobile.exception.BusinessException;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -20,7 +20,7 @@ public class CoreBankingService {
     CoreBankingClient client;
 
 
-    public CustomerDto saveCustomer(CustomerDto dto) {
+    public CBCustomerDto saveCustomer(CBCustomerDto dto) {
         return client.saveCustomer(dto).getResponse();
     }
 
@@ -28,27 +28,27 @@ public class CoreBankingService {
         client.deleteCustomer(id);
     }
 
-    public CustomerDto findCustomerById(Long id) {
+    public CBCustomerDto findCustomerById(Long id) {
         return client.findCustomerById(id).getResponse();
     }
 
-    public CustomerDto lookupCustomerByAccount(String accountNumber) {
+    public CBCustomerDto lookupCustomerByAccount(String accountNumber) {
         return client.lookupCustomerByAccount(accountNumber).getResponse();
     }
 
-    public CustomerDto lookupCustomerByNationalCode(String nationalCode) {
-        CustomerDto customerDto = client.lookupCustomerByNationalCode(nationalCode).getResponse();
+    public CBCustomerDto lookupCustomerByNationalCode(String nationalCode) {
+        CBCustomerDto customerDto = client.lookupCustomerByNationalCode(nationalCode).getResponse();
         if (customerDto == null) {
             throw new BusinessException(CoreBankingMessage.CUSTOMER_NOT_FOUND);
         }
         return customerDto;
     }
 
-    public TransferResponse transfer(TransferRequest request, String currentUserNationalCode) {
+    public CBTransferResponse transfer(CBTransferRequest request, String currentUserNationalCode) {
         return client.transfer(request, currentUserNationalCode).getResponse();
     }
 
-    public List<TransferInfoDto> transferHistory(String currentUserNationalCode) {
+    public List<CBTransferInfoDto> transferHistory(String currentUserNationalCode) {
         return client.transferHistory(currentUserNationalCode).getResponse();
     }
 

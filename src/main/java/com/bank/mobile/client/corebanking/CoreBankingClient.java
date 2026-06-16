@@ -15,7 +15,7 @@ public interface CoreBankingClient {
 
     @POST
     @Path("/customers")
-    CBResponseDto<CustomerDto> saveCustomer(CustomerDto dto);
+    CBResponseDto<CBCustomerDto> saveCustomer(CBCustomerDto dto);
 
     @DELETE
     @Path("/customers/{id}")
@@ -23,22 +23,22 @@ public interface CoreBankingClient {
 
     @GET
     @Path("/customers/{id}")
-    CBResponseDto<CustomerDto> findCustomerById(@PathParam("id") Long id);
+    CBResponseDto<CBCustomerDto> findCustomerById(@PathParam("id") Long id);
 
     @GET
     @Path("/customers/by-account/{accountNumber}")
-    CBResponseDto<CustomerDto> lookupCustomerByAccount(@PathParam("accountNumber") String accountNumber);
+    CBResponseDto<CBCustomerDto> lookupCustomerByAccount(@PathParam("accountNumber") String accountNumber);
 
     @GET
     @Path("/customers/by-national-code/{nationalCode}")
-    CBResponseDto<CustomerDto> lookupCustomerByNationalCode(@PathParam("nationalCode") String nationalCode);
+    CBResponseDto<CBCustomerDto> lookupCustomerByNationalCode(@PathParam("nationalCode") String nationalCode);
 
     @POST
     @Path("/transfers")
-    CBResponseDto<TransferResponse> transfer(TransferRequest request, @HeaderParam("X-National-Code") String currentUserNationalCode);
+    CBResponseDto<CBTransferResponse> transfer(CBTransferRequest request, @HeaderParam("X-National-Code") String currentUserNationalCode);
 
     @GET
     @Path("/transfers/history")
-    CBResponseDto<List<TransferInfoDto>> transferHistory(@HeaderParam("X-National-Code") String currentUserNationalCode);
+    CBResponseDto<List<CBTransferInfoDto>> transferHistory(@HeaderParam("X-National-Code") String currentUserNationalCode);
 
 }

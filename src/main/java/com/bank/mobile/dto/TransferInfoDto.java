@@ -1,4 +1,4 @@
-package com.bank.mobile.client.corebanking.dto;
+package com.bank.mobile.dto;
 
 import java.time.LocalDateTime;
 
